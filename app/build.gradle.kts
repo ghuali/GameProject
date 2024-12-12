@@ -42,18 +42,18 @@ android {
 
 dependencies {
 
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation ("androidx.compose.ui:ui:1.5.1")
-    implementation ("androidx.compose.material:material:1.5.1")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.5.1")
+    implementation(libs.androidx.activity.compose.v172)
+    implementation (libs.ui)
+    implementation (libs.androidx.material)
+    implementation (libs.ui.tooling.preview)
 
     // Room
-    implementation ("androidx.room:room-runtime:2.5.2")
-    ksp ("androidx.room:room-compiler:2.5.2")
-    implementation ("androidx.room:room-ktx:2.5.2")
+    implementation (libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
 
     // Lifecycle
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation (libs.androidx.lifecycle.runtime.ktx.v261)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
