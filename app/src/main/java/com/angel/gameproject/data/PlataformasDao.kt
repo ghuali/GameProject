@@ -1,4 +1,18 @@
 package com.angel.gameproject.data
 
-interface PlataformasDao {
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+
+@Dao interface PlataformasDao {
+    @Insert
+    suspend fun insert(plataformas: Plataformas)
+    @Query("SELECT * FROM plataformas")
+    suspend fun getAllTipos(): List<Plataformas>
+    @Update
+    suspend fun update(plataformas: Plataformas)
+    @Delete
+    suspend fun delete(plataformas: Plataformas)
 }
