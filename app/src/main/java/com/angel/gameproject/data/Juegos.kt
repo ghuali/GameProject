@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = TipoJuegos::class,
             parentColumns = ["id"],
-            childColumns = ["idTipo"],
+            childColumns = ["idTipoJuegos"],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
@@ -28,6 +28,6 @@ data class Juegos(
     val id: Int = 0,
     val nombreJuegos: String,
     val Precio: String,
-    val idTipo: Int,
+    val idTipoJuegos: Int,
     val idPlataformas: Int
 )
