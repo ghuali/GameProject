@@ -17,5 +17,6 @@ class JuegosViewModel(
 
     val juegos: StateFlow<List<Juegos>> = _juegos
 
-
+    private val _tiposJuegos = MutableStateFlow<Map<Int, String>>(emptyMap())
+    val tipoJuegos: StateFlow<Map<Int, String>> = _tiposJuegos
 }
