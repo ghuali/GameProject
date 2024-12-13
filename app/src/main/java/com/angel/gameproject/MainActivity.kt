@@ -11,37 +11,25 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.ui.theme.GameProjectTheme
+import com.angel.gameproject.view.view
+import com.angel.gameproject.viewModel.JuegosViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val database = AppDatabase.getDatabase(this)
+        val juegosDao = database.juegosDao()
+        val tipoJuegosDao = database.tipojuegosDao()
+        val plataformasDao = database.plataformasDao()
+
+        val juegosViewModel = JuegosViewModel(juegosDao, tipoJuegosDao, plataformasDao)
         setContent {
-            GameProjectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            view(juegosViewModel)
+
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GameProjectTheme {
-        Greeting("Android")
-    }
-}
