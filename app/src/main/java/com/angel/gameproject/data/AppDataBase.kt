@@ -41,7 +41,12 @@ abstract class AppDatabase : RoomDatabase() {
         private suspend fun datos(tipoJuegosDao: TipoJuegosDao,plataformasDao: PlataformasDao) {
 
             val tipojuegos = listOf(
-                TipoJuegos()
+                TipoJuegos(nombre = "Disparos"),
+                TipoJuegos(nombre = "Accion"),
+                TipoJuegos(nombre = "Rpg"),
+                TipoJuegos(nombre = "Puzzle"),
+                TipoJuegos(nombre = "Familiar"),
+                TipoJuegos(nombre = "Souls"),
             )
         }
     }
