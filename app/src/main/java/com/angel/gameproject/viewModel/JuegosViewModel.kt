@@ -19,4 +19,7 @@ class JuegosViewModel(
 
     private val _tiposJuegos = MutableStateFlow<Map<Int, String>>(emptyMap())
     val tipoJuegos: StateFlow<Map<Int, String>> = _tiposJuegos
+
+    private val _plataformas = MutableStateFlow<Map<Int, String>>(emptyMap())
+    val plataformas: StateFlow<Map<Int, String>> = _plataformas
 }
