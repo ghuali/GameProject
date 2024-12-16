@@ -158,7 +158,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                                 idTipoJuegos = tipoid,
                                 idPlataformas = plataformasid
                             )
-
+                            juegos.insert
                         }
                     }
                 }
