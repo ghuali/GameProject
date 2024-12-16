@@ -30,6 +30,7 @@ import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Button
 import androidx.compose.runtime.rememberCoroutineScope
+import com.angel.gameproject.data.Juegos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -148,7 +149,17 @@ fun view(juegosViewModel:JuegosViewModel) {
             Button(
                 onClick = {
                     scope.launch(Dispatchers.IO) {
+                        val tipoid = newTipoId.toInt()
+                        val plataformasid = newPlataformasId.toInt()
+                        if (tipoid != null && plataformasid != null) {
+                            val newJuego = Juegos(
+                                nombreJuegos = newJuegosNombre,
+                                Precio = newJuegosPrecio,
+                                idTipoJuegos = tipoid,
+                                idPlataformas = plataformasid
+                            )
 
+                        }
                     }
                 }
             ) { }
