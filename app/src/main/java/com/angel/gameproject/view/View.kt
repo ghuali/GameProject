@@ -123,6 +123,10 @@ fun view(juegosViewModel:JuegosViewModel) {
                     focusedContainerColor = Color(0xFFFFFFFF)
                 )
             )
+            DropdownMenu(
+                expanded = expanded2,
+                onDismissRequest = { expanded2 = false }
+            ) {}
         }
     }
 }
