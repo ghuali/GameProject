@@ -55,6 +55,7 @@ dependencies {
     // Lifecycle
     implementation (libs.androidx.lifecycle.runtime.ktx.v261)
 
+    implementation (libs.kotlin.stdlib)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
