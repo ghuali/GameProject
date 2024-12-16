@@ -34,6 +34,7 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var newJuegosNombre by remember { mutableStateOf("") }
     var newJuegosPrecio by remember { mutableStateOf("") }
+    var selectedTipoJuegos by remember { mutableStateOf("") }
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -72,7 +73,7 @@ fun view(juegosViewModel:JuegosViewModel) {
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
-        )
+        ) {
         }
     }
 }
