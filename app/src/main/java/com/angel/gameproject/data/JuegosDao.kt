@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao interface JuegosDao { @Insert suspend fun insert(juegos: Juegos)
     @Query("SELECT * FROM juegos")
-    suspend fun getAllTasks(): List<Juegos>
+    suspend fun getAllJuegos(): List<Juegos>
     @Update
     suspend fun update(juegos: Juegos)
     @Delete

@@ -56,6 +56,21 @@ abstract class AppDatabase : RoomDatabase() {
                     tipoJuegosDao.insert(tipoJuego)
                 }
             }
+
+            val plataformas = listOf(
+                Plataformas(tituloPlataformas = "Playstation"),
+                Plataformas(tituloPlataformas = "Xbox"),
+                Plataformas(tituloPlataformas = "Nintendo"),
+                Plataformas(tituloPlataformas = "Pc"),
+            )
+
+            val plataformasFromDb = plataformasDao.getAllPlataformas()
+
+            if (plataformasFromDb.isEmpty()) {
+                plataformas.forEach { plataforma ->
+                    plataformasDao.insert(plataforma)
+                }
+            }
         }
     }
 }

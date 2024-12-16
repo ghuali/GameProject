@@ -10,7 +10,7 @@ import androidx.room.Update
     @Insert
     suspend fun insert(plataformas: Plataformas)
     @Query("SELECT * FROM plataformas")
-    suspend fun getAllTipos(): List<Plataformas>
+    suspend fun getAllPlataformas(): List<Plataformas>
     @Update
     suspend fun update(plataformas: Plataformas)
     @Delete
