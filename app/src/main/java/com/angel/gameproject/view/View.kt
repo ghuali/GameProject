@@ -67,7 +67,6 @@ fun view(juegosViewModel:JuegosViewModel) {
                 focusedContainerColor = Color(0xFFFFFFFF)
             )
         )
-        Text("Añadir Precio del juego Nuevo", fontSize = 10.sp)
         OutlinedTextField(
             value = newJuegosPrecio,
             onValueChange = { newJuegosPrecio = it },
