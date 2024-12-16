@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -33,6 +34,8 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var newJuegosNombre by remember { mutableStateOf("") }
     var newJuegosPrecio by remember { mutableStateOf("") }
+
+    var expanded by remember { mutableStateOf(false) }
 
 
     Column(
@@ -66,5 +69,10 @@ fun view(juegosViewModel:JuegosViewModel) {
                 focusedContainerColor = Color(0xFFFFFFFF)
             )
         )
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded }
+        )
+        }
     }
 }
