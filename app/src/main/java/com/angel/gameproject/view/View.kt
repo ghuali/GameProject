@@ -108,6 +108,9 @@ fun view(juegosViewModel:JuegosViewModel) {
                 }
             }
         }
-
+        ExposedDropdownMenuBox(
+            expanded = expanded2,
+            onExpandedChange = { expanded2 = !expanded2 }
+        ) {}
     }
 }
