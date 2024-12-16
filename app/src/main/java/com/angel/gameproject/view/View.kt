@@ -28,7 +28,10 @@ import androidx.lifecycle.ViewModel
 import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
 import kotlinx.coroutines.Dispatchers
@@ -151,18 +154,25 @@ fun view(juegosViewModel:JuegosViewModel) {
                     scope.launch(Dispatchers.IO) {
                         val tipoid = newTipoId.toInt()
                         val plataformasid = newPlataformasId.toInt()
-                        if (tipoid != null && plataformasid != null) {
+                        if (newJuegosNombre.isNotEmpty() && newJuegosPrecio.isNotEmpty() && newTipoId != 0 && newPlataformasId != 0) {
                             val newJuego = Juegos(
                                 nombreJuegos = newJuegosNombre,
                                 Precio = newJuegosPrecio,
                                 idTipoJuegos = tipoid,
                                 idPlataformas = plataformasid
                             )
-                            juegos.insert
+                            juegosViewModel.addJuego(newJuego)
+
                         }
                     }
-                }
-            ) { }
+                },
+                modifier = Modifier.padding(8.dp),
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
+            ) {
+                Text("Añadir")
+            }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
