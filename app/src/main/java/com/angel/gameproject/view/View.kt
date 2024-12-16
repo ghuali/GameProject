@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.OutlinedTextField
@@ -37,6 +39,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     var newJuegosNombre by remember { mutableStateOf("") }
     var newJuegosPrecio by remember { mutableStateOf("") }
     var selectedTipoJuegos by remember { mutableStateOf("") }
+    var newTipoId by remember { mutableStateOf(0) }
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -87,6 +90,21 @@ fun view(juegosViewModel:JuegosViewModel) {
                     focusedContainerColor = Color(0xFFFFFFFF)
                 )
             )
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                tipoJuegos.forEach { tipo ->
+                    DropdownMenuItem(
+                        text = { Text(tipo.nombre) },
+                        onClick = {
+                            selectedTipoJuegos = tipo.nombre
+                            newTipoId = tipo.id
+                            expanded = false
+                        }
+                    )
+                }
+            }
         }
     }
 }
