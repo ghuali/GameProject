@@ -41,6 +41,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     var selectedTipoJuegos by remember { mutableStateOf("") }
     var newTipoId by remember { mutableStateOf(0) }
     var selectedPlataformas by remember { mutableStateOf("") }
+    var newPlataformasId by remember { mutableStateOf(0) }
 
     var expanded by remember { mutableStateOf(false) }
     var expanded2 by remember { mutableStateOf(false) }
@@ -126,7 +127,18 @@ fun view(juegosViewModel:JuegosViewModel) {
             DropdownMenu(
                 expanded = expanded2,
                 onDismissRequest = { expanded2 = false }
-            ) {}
+            ) {
+                plataformas.forEach { plataormas ->
+                    DropdownMenuItem(
+                        text = { Text(plataormas.tituloPlataformas) },
+                        onClick = {
+                            selectedPlataformas = plataormas.tituloPlataformas
+                            newPlataformasId = plataormas.idPlataformas
+                            expanded2 = false
+                        }
+                    )
+                }
+            }
         }
     }
 }
