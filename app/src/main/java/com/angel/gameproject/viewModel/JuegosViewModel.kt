@@ -42,4 +42,6 @@ class JuegosViewModel(
             juegosDao.insert(juego)
             // Actualiza la lista de juegos después de insertar
             _juegos.value = juegosDao.getAllJuegos()
+        }
+    }
 }
