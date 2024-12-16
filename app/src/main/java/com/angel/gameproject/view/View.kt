@@ -53,7 +53,7 @@ fun view(juegosViewModel:JuegosViewModel) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Añadir juego Nuevo", fontSize = 20.sp)
+        Text("Añadir juego Nuevo", fontSize = 10.sp)
         OutlinedTextField(
             value = newJuegosNombre,
             onValueChange = { newJuegosNombre = it },
@@ -64,7 +64,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                 focusedContainerColor = Color(0xFFFFFFFF)
             )
         )
-        Text("Añadir Precio del juego Nuevo", fontSize = 20.sp)
+        Text("Añadir Precio del juego Nuevo", fontSize = 10.sp)
         OutlinedTextField(
             value = newJuegosPrecio,
             onValueChange = { newJuegosPrecio = it },
@@ -106,5 +106,6 @@ fun view(juegosViewModel:JuegosViewModel) {
                 }
             }
         }
+
     }
 }
