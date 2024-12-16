@@ -111,6 +111,18 @@ fun view(juegosViewModel:JuegosViewModel) {
         ExposedDropdownMenuBox(
             expanded = expanded2,
             onExpandedChange = { expanded2 = !expanded2 }
-        ) {}
+        ) {
+            OutlinedTextField(
+                value = selectedPlataformas,
+                onValueChange = {},
+                label = { Text("Seleccionar Plataformas") },
+                readOnly = true,
+                modifier = Modifier.menuAnchor().fillMaxWidth(),
+                colors = TextFieldDefaults.colors(
+                    unfocusedContainerColor = Color(0xFFFFFFFF),
+                    focusedContainerColor = Color(0xFFFFFFFF)
+                )
+            )
+        }
     }
 }
