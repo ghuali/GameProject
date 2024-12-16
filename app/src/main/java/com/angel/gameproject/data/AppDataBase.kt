@@ -48,6 +48,14 @@ abstract class AppDatabase : RoomDatabase() {
                 TipoJuegos(nombre = "Familiar"),
                 TipoJuegos(nombre = "Souls"),
             )
+
+            val tiposFromDb = tipoJuegosDao.getAllTipos().first()
+
+            if (tiposFromDb.isEmpty()) {
+                tipojuegos.forEach { tipoJuego ->
+                    tipoJuegosDao.insert(tipoJuego)
+                }
+            }
         }
     }
 }
