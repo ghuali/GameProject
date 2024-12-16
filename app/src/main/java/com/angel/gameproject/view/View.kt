@@ -40,6 +40,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     var newJuegosPrecio by remember { mutableStateOf("") }
     var selectedTipoJuegos by remember { mutableStateOf("") }
     var newTipoId by remember { mutableStateOf(0) }
+    var selectedPlataformas by remember { mutableStateOf("") }
 
     var expanded by remember { mutableStateOf(false) }
 
