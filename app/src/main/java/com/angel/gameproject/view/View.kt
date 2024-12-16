@@ -27,7 +27,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.viewModel.JuegosViewModel
-
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.Button
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +39,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     val tipoJuegos by juegosViewModel.tipoJuegos.collectAsState()
     val plataformas by juegosViewModel.plataformas.collectAsState()
     val juegos by juegosViewModel.juegos.collectAsState()
+    val scope = rememberCoroutineScope()
 
     var newJuegosNombre by remember { mutableStateOf("") }
     var newJuegosPrecio by remember { mutableStateOf("") }
@@ -138,6 +143,15 @@ fun view(juegosViewModel:JuegosViewModel) {
                     )
                 }
             }
+        }
+        Row {
+            Button(
+                onClick = {
+                    scope.launch(Dispatchers.IO) {
+
+                    }
+                }
+            ) { }
         }
     }
 }
