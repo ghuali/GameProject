@@ -16,5 +16,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     val plataformas by juegosViewModel.plataformas.collectAsState()
     val juegos by juegosViewModel.juegos.collectAsState()
 
-
+    var newJuegosNombre by remember { mutableStateOf("") }
+    var newJuegosPrecio by remember { mutableStateOf("") }
+    var
 }
