@@ -4,9 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.viewModel.JuegosViewModel
+
 
 @Composable
 fun view(juegosViewModel:JuegosViewModel) {
@@ -43,7 +46,25 @@ fun view(juegosViewModel:JuegosViewModel) {
     ) {
         Text("Añadir juego Nuevo", fontSize = 20.sp)
         OutlinedTextField(
-            value =
+            value = newJuegosNombre,
+            onValueChange = { newJuegosNombre = it },
+            label = { Text("Nombre del juego") },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color(0xFFFFFFFF),
+                focusedContainerColor = Color(0xFFFFFFFF)
+            )
+        )
+        Text("Añadir Precio del juego Nuevo", fontSize = 20.sp)
+        OutlinedTextField(
+            value = newJuegosPrecio,
+            onValueChange = { newJuegosPrecio = it },
+            label = { Text("Precio del juego") },
+            modifier = Modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color(0xFFFFFFFF),
+                focusedContainerColor = Color(0xFFFFFFFF)
+            )
         )
     }
 }
