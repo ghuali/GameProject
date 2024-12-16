@@ -49,7 +49,7 @@ abstract class AppDatabase : RoomDatabase() {
                 TipoJuegos(nombre = "Souls"),
             )
 
-            val tiposFromDb = tipoJuegosDao.getAllTipos().first()
+            val tiposFromDb = tipoJuegosDao.getAllTipos()
 
             if (tiposFromDb.isEmpty()) {
                 tipojuegos.forEach { tipoJuego ->
