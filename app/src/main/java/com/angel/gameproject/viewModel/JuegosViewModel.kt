@@ -8,6 +8,7 @@ import com.angel.gameproject.data.Plataformas
 import com.angel.gameproject.data.PlataformasDao
 import com.angel.gameproject.data.TipoJuegos
 import com.angel.gameproject.data.TipoJuegosDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -36,4 +37,9 @@ class JuegosViewModel(
             _plataformas.value = plataformasDao.getAllPlataformas()
         }
     }
+    fun addJuego(juego: Juegos) {
+        viewModelScope.launch(Dispatchers.IO) {
+            juegosDao.insert(juego)
+            // Actualiza la lista de juegos después de insertar
+            _juegos.value = juegosDao.getAllJuegos()
 }
