@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -26,6 +27,7 @@ import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.viewModel.JuegosViewModel
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun view(juegosViewModel:JuegosViewModel) {
     val tipoJuegos by juegosViewModel.tipoJuegos.collectAsState()
@@ -74,6 +76,17 @@ fun view(juegosViewModel:JuegosViewModel) {
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
         ) {
+            OutlinedTextField(
+                value = selectedTipoJuegos,
+                onValueChange = {},
+                label = { Text("Seleccionar Tipo") },
+                readOnly = true,
+                modifier = Modifier.menuAnchor().fillMaxWidth(),
+                colors = TextFieldDefaults.colors(
+                    unfocusedContainerColor = Color(0xFFFFFFFF),
+                    focusedContainerColor = Color(0xFFFFFFFF)
+                )
+            )
         }
     }
 }
