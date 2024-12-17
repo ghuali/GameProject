@@ -42,15 +42,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun Screens(juegosViewModel: JuegosViewModel) {
+fun MainView(juegosViewModel: JuegosViewModel) {
 
     var currentView by remember { mutableStateOf("home") }
 
-    when (currentView) {}
+    when (currentView) {
+        "home" -> HomeView(
+            juegosViewModel = juegosViewModel,
+            onNavigateToMap = { currentView = "map" } // Cambia la vista al mapa
+        )
+        "map" -> MapView(
+            onNavigateBack = { currentView = "home" } // Regresa al inicio
+        )
+        }
+    }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
+fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
     val tipoJuegos by juegosViewModel.tipoJuegos.collectAsState()
     val plataformas by juegosViewModel.plataformas.collectAsState()
     val juegos by juegosViewModel.juegos.collectAsState()
@@ -83,6 +92,15 @@ fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Button(
+            onClick = onNavigateToMap,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50))
+        ) {
+            Text("Ir al Mapa")
+        }
+    }
+
         Text("Añadir juego Nuevo", fontSize = 10.sp)
         OutlinedTextField(
             value = newJuegosNombre,
@@ -207,12 +225,12 @@ fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
                         selectedPlataformas = juego.plataforma
                     }
                     .padding(vertical = 4.dp)
-                ){
+            ) {
 
-                    Text(text = "Juego: ${juego.nombre}, Precio: ${juego.precio}, Tipo: ${juego.tipo}, Plataforma: ${juego.plataforma}")
-                }
-
+                Text(text = "Juego: ${juego.nombre}, Precio: ${juego.precio}, Tipo: ${juego.tipo}, Plataforma: ${juego.plataforma}")
             }
+
+        }
         if (isEditing && juegoSelecionado != null) {
             Spacer(modifier = Modifier.height(16.dp))
             Text("Editar su Juego seleccionado: ${juegoSelecionado?.nombre}")
@@ -253,7 +271,10 @@ fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
                                 juegoSelecionado = null
                             } else {
                                 // Aquí puedes mostrar un mensaje de error si algo está vacío
-                                Log.e("Actualizar Juego", "Uno o más campos están vacíos o inválidos.")
+                                Log.e(
+                                    "Actualizar Juego",
+                                    "Uno o más campos están vacíos o inválidos."
+                                )
                             }
                         }
                     }
@@ -265,5 +286,7 @@ fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
             }
         }
     }
-}
+
+
+
 
