@@ -16,27 +16,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase
+import org.osmdroid.tileprovider.tilesource.XYTileSource
 
 @Composable
 fun MapView(onNavigateBack: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(0xFF2196F3))
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Esta es la Vista de Mapa", fontSize = 22.sp, color = Color.White)
 
-        Spacer(modifier = Modifier.height(16.dp))
+    val GoogleSat: OnlineTileSourceBase = object : XYTileSource(
+        "Google-Sat",
+        0, 19, 256, ".png", arrayOf(
+            "https://mt0.google.com",
+            "https://mt1.google.com",
+            "https://mt2.google.com",
+            "https://mt3.google.com",
+        )
+    )
 
         // Botón para volver a la vista principal
-        Button(
-            onClick = onNavigateBack,
-            colors = ButtonDefaults.buttonColors(Color(0xFFFF5722))
-        ) {
+    Button(
+        onClick = onNavigateBack,
+        colors = ButtonDefaults.buttonColors(Color(0xFFFF5722))
+    ) {
             Text("Volver a Inicio")
         }
     }
-}
