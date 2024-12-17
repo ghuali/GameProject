@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase
 import org.osmdroid.tileprovider.tilesource.XYTileSource
+import org.osmdroid.util.MapTileIndex
 
 @Composable
 fun MapView(onNavigateBack: () -> Unit) {
@@ -30,7 +31,13 @@ fun MapView(onNavigateBack: () -> Unit) {
             "https://mt2.google.com",
             "https://mt3.google.com",
         )
-    )
+    ) {
+        override fun getTileURLString(pTileIndex: Long): String {
+            return baseUrl + "/vt/lyrs=s&x=" + MapTileIndex.getX(pTileIndex) + "&y=" + MapTileIndex.getY(
+                pTileIndex
+            ) + "&z=" + MapTileIndex.getZoom(pTileIndex)
+        }
+    }
 
         // Botón para volver a la vista principal
     Button(
