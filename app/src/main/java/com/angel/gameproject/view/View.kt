@@ -71,17 +71,7 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var juegoSelecionado by remember { mutableStateOf<JuegoUI?>(null) }
 
-    Scaffold(
-        bottomBar = { BottomNavigationBar() }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-        ) {
-            view(juegosViewModel = juegosViewModel)
-        }
-    }
+
 
 
     Column(
@@ -277,16 +267,3 @@ fun view(juegosViewModel:JuegosViewModel) {
     }
 }
 
-@Composable
-fun BottomNavigationBar() {
-    BottomNavigation(
-        backgroundColor = Color(0xFF2196F3),
-        contentColor = Color.White
-    ) {
-        BottomNavigationItem(
-            icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
-            label = { Text("Inicio") },
-            selected = false, // Cambia a true si está seleccionado
-            onClick = {
-                // Acción de navegación o lógica asociada
-            })}}
