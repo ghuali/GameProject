@@ -24,4 +24,12 @@ import kotlinx.coroutines.flow.Flow
 
     @Query("DELETE FROM Juegos WHERE id = :juegoId")
     suspend fun deleteById(juegoId: Int)
+
+    @Query("""
+        UPDATE Juegos 
+        SET nombreJuegos = :nombre, Precio = :precio, idTipoJuegos = :tipoId, idPlataformas = :plataformaId 
+        WHERE id = :juegoId
+    """)
+    suspend fun updateJuego(juegoId: Int, nombre: String, precio: String, tipoId: Int, plataformaId: Int)
 }
+
