@@ -188,7 +188,11 @@ fun view(juegosViewModel:JuegosViewModel) {
                     .clickable {
                         juegoSelecionado = juegos
                         isEditing = true
+                        newJuegosNombre = juegos.nombreJuegos
+                        newJuegosPrecio = juegos.Precio
+                        selectedTipoJuegos = tipoJuegos.find { it.id == juegos.idTipoJuegos }?.nombre ?: ""
                     }
+                    .padding(vertical = 4.dp)
                 ){}
                 
             }
