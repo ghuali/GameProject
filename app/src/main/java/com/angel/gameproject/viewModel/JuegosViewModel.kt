@@ -13,6 +13,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+data class JuegoUI(
+    val id: Int,
+    val nombre: String,
+    val precio: String,
+    val tipo: String,
+    val plataforma: String
+)
+
 class JuegosViewModel(
     private val juegosDao: JuegosDao,
     private val tipoJuegosDao: TipoJuegosDao,
