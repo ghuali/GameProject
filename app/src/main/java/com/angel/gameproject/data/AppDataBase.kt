@@ -62,6 +62,7 @@ abstract class AppDatabase : RoomDatabase() {
                 Plataformas(tituloPlataformas = "Xbox"),
                 Plataformas(tituloPlataformas = "Nintendo"),
                 Plataformas(tituloPlataformas = "Pc"),
+                Plataformas(tituloPlataformas = "Todos"),
             )
 
             val plataformasFromDb = plataformasDao.getAllPlataformas()
