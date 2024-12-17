@@ -211,7 +211,20 @@ fun view(juegosViewModel:JuegosViewModel) {
         if (isEditing && juegoSelecionado != null) {
             Spacer(modifier = Modifier.height(16.dp))
             Text("Editar su Juego selecionado: ${juegoSelecionado?.nombre}")
-            Row {  }
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                Button(onClick = {
+                    juegoSelecionado?.let { juego ->
+                        scope.launch {
+                            juegosViewModel.deleteJuego(juego.id)
+                            juegoSelecionado = null
+                            isEditing = false
+                        }
+                    }
+                }
+            }
         }
     }
 }
