@@ -206,7 +206,12 @@ fun view(juegosViewModel:JuegosViewModel) {
 
                     Text(text = "Juego: ${juego.nombre}, Precio: ${juego.precio}, Tipo: ${juego.tipo}, Plataforma: ${juego.plataforma}")
                 }
-                
+
             }
+        if (isEditing && juegoSelecionado != null) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Editar su Juego selecionado: ${juegoSelecionado?.nombre}")
+            Row {  }
+        }
     }
 }
