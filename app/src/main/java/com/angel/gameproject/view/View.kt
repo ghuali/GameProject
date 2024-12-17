@@ -26,13 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import com.angel.gameproject.data.AppDatabase
+
 import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+
 import androidx.compose.material.BottomNavigation
+
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -42,7 +43,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
-import com.angel.gameproject.data.Plataformas
+
 import com.angel.gameproject.viewModel.JuegoUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -80,9 +81,8 @@ fun view(juegosViewModel:JuegosViewModel) {
         ) {
             view(juegosViewModel = juegosViewModel)
         }
-
-
     }
+
 
     Column(
         modifier = Modifier
@@ -286,9 +286,7 @@ fun BottomNavigationBar() {
         BottomNavigationItem(
             icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
             label = { Text("Inicio") },
-            selected = false,
+            selected = false, // Cambia a true si está seleccionado
             onClick = {
-
-            }
-    }
-}
+                // Acción de navegación o lógica asociada
+            })}}
