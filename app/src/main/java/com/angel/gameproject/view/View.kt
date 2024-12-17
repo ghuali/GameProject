@@ -65,9 +65,19 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var juegoSelecionado by remember { mutableStateOf<JuegoUI?>(null) }
 
-    """Scaffold(
+    Scaffold(
         bottomBar = { BottomNavigationBar() }
-    ) {}"""
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+        ) {
+            view(juegosViewModel = juegosViewModel)
+        }
+
+
+    }
 
     Column(
         modifier = Modifier
@@ -259,6 +269,10 @@ fun view(juegosViewModel:JuegosViewModel) {
 
             }
         }
-
     }
-        }
+}
+
+@Composable
+fun BottomNavigationBar() {
+
+}
