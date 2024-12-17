@@ -64,10 +64,9 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var juegoSelecionado by remember { mutableStateOf<JuegoUI?>(null) }
 
-
-    Scaffold(
+    """Scaffold(
         bottomBar = { BottomNavigationBar() }
-    ) {}
+    ) {}"""
 
     Column(
         modifier = Modifier
@@ -226,6 +225,24 @@ fun view(juegosViewModel:JuegosViewModel) {
                 }, colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))) {
                     Text("Borrar")
             }
+                Button(onClick = {
+                    scope.launch {
+                        juegoSelecionado?.let { juego ->
+                            juegosViewModel.updateJuego(
+                                juegoId = juego.id,
+                                nombre = newJuegosNombre,
+                                precio = newJuegosPrecio,
+                                tipoId = newTipoId,
+                                plataformaId = newPlataformasId
+                            )
+                            isEditing = false
+                            juegoSelecionado = null
+                        }
+                    }
+                }) {
+                    Text("Guardar Cambios")
+                }
+        }
         }
     }
 }
