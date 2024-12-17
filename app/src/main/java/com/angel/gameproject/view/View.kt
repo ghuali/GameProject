@@ -36,6 +36,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
 import com.angel.gameproject.data.Plataformas
+import com.angel.gameproject.viewModel.JuegoUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -45,6 +46,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     val tipoJuegos by juegosViewModel.tipoJuegos.collectAsState()
     val plataformas by juegosViewModel.plataformas.collectAsState()
     val juegos by juegosViewModel.juegos.collectAsState()
+    val juegosUI by juegosViewModel.juegosUI.collectAsState()
     val scope = rememberCoroutineScope()
 
     var newJuegosNombre by remember { mutableStateOf("") }
@@ -59,7 +61,7 @@ fun view(juegosViewModel:JuegosViewModel) {
     var expanded by remember { mutableStateOf(false) }
     var expanded2 by remember { mutableStateOf(false) }
 
-    var juegoSelecionado by remember { mutableStateOf<Juegos?>(null) }
+    var juegoSelecionado by remember { mutableStateOf<JuegoUI?>(null) }
 
 
     Column(
@@ -182,22 +184,22 @@ fun view(juegosViewModel:JuegosViewModel) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text("Lista de Juegos", fontSize = 22.sp)
-            juegos.forEach{ juegos ->
-                Row (
-                    modifier = Modifier
+        juegosUI.forEach { juego ->
+            Row(
+                modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        juegoSelecionado = juegos
+                        juegoSelecionado = juego // Puedes actualizar estados aquí
                         isEditing = true
-                        newJuegosNombre = juegos.nombreJuegos
-                        newJuegosPrecio = juegos.Precio
-                        selectedTipoJuegos = tipoJuegos.find { it.id == juegos.idTipoJuegos }?.nombre ?: ""
-                        selectedPlataformas = plataformas.find { it.idPlataformas == juegos.idPlataformas }?.tituloPlataformas?: ""
+                        newJuegosNombre = juego.nombre
+                        newJuegosPrecio = juego.precio
+                        selectedTipoJuegos = juego.tipo
+                        selectedPlataformas = juego.plataforma
                     }
                     .padding(vertical = 4.dp)
                 ){
-                    Text(text =
-                    "Juego: ${juegos.nombreJuegos}, Precio: ${juegos.Precio}, Tipo: ${tipoJuegos.find { it.id == juegos.idTipoJuegos }?.nombre ?: "Desconocido"},Plataforma: ${plataformas.find { it.idPlataformas == juegos.idPlataformas }?.tituloPlataformas?: "Desconocido"}")
+
+                    Text(text = "Juego: ${juego.nombre}, Precio: ${juego.precio}, Tipo: ${juego.tipo}, Plataforma: ${juego.plataforma}")
                 }
                 
             }
