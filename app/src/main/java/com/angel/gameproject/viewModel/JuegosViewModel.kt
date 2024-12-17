@@ -1,5 +1,6 @@
 package com.angel.gameproject.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.angel.gameproject.data.Juegos
@@ -55,20 +56,21 @@ class JuegosViewModel(
         }
     }
 
-        private fun loadJuegos() {
-            viewModelScope.launch(Dispatchers.IO) {
-                val juegos = juegosDao.getAllJuegos()
-                _juegosUI.value = juegos.map { juego ->
-                    JuegoUI(
-                        id = juego.id,
-                        nombre = juego.nombreJuegos,
-                        precio = juego.Precio,
-                        tipo = juegosDao.getTipoById(juego.idTipoJuegos)?.nombre ?: "Desconocido",
-                        plataforma = juegosDao.getPlataformaById(juego.idPlataformas)?.tituloPlataformas ?: "Desconocido"
-                    )
-                }
+    private fun loadJuegos() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val juegos = juegosDao.getAllJuegos()
+            _juegosUI.value = juegos.map { juego ->
+                JuegoUI(
+                    id = juego.id,
+                    nombre = juego.nombreJuegos,
+                    precio = juego.Precio,
+                    tipo = juegosDao.getTipoById(juego.idTipoJuegos)?.nombre ?: "Desconocido",
+                    plataforma = juegosDao.getPlataformaById(juego.idPlataformas)?.tituloPlataformas ?: "Desconocido"
+                )
             }
         }
+    }
+
     fun addJuego(juego: Juegos) {
         viewModelScope.launch(Dispatchers.IO) {
             juegosDao.insert(juego)
@@ -84,9 +86,34 @@ class JuegosViewModel(
         }
     }
     fun updateJuego(juegoId: Int, nombre: String, precio: String, tipoId: Int, plataformaId: Int) {
+        // Verificar si alguno de los campos es inválido
+        if (nombre.isEmpty() || precio.isEmpty() || tipoId == 0 || plataformaId == 0) {
+            Log.e("Actualizar Juego", "Los campos no pueden estar vacíos.")
+            return  // Aquí podemos salir de la función si hay un campo inválido
+        }
+
         viewModelScope.launch(Dispatchers.IO) {
-            juegosDao.updateJuego(juegoId, nombre, precio, tipoId, plataformaId)
-            loadJuegos() // Recargar la lista de juegos después de editar
+            try {
+                // Crear un nuevo objeto Juegos con los datos actualizados
+                val juegoActualizado = Juegos(
+                    id = juegoId,  // Mantenemos el id del juego original
+                    nombreJuegos = nombre,
+                    Precio = precio,
+                    idTipoJuegos = tipoId,
+                    idPlataformas = plataformaId
+                )
+
+                // Actualiza el juego en la base de datos
+                juegosDao.update(juegoActualizado)
+
+                // Después de actualizar, recargamos la lista de juegos
+                loadJuegos()
+            } catch (e: Exception) {
+                Log.e("Actualizar Juego", "Error al actualizar el juego: ${e.message}")
+            }
         }
     }
+
+
+
 }

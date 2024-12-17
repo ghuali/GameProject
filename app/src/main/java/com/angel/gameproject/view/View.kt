@@ -1,5 +1,6 @@
 package com.angel.gameproject.view
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -209,40 +210,55 @@ fun view(juegosViewModel:JuegosViewModel) {
             }
         if (isEditing && juegoSelecionado != null) {
             Spacer(modifier = Modifier.height(16.dp))
-            Text("Editar su Juego selecionado: ${juegoSelecionado?.nombre}")
-            Row (
+            Text("Editar su Juego seleccionado: ${juegoSelecionado?.nombre}")
+
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
+            ) {
                 Button(onClick = {
                     juegoSelecionado?.let { juego ->
                         scope.launch {
+                            // Llamada al ViewModel para eliminar el juego
                             juegosViewModel.deleteJuego(juego.id)
+                            // Resetear la interfaz
                             juegoSelecionado = null
                             isEditing = false
                         }
                     }
                 }, colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))) {
                     Text("Borrar")
-            }
+                }
+
                 Button(onClick = {
                     scope.launch {
                         juegoSelecionado?.let { juego ->
-                            juegosViewModel.updateJuego(
-                                juegoId = juego.id,
-                                nombre = newJuegosNombre,
-                                precio = newJuegosPrecio,
-                                tipoId = newTipoId,
-                                plataformaId = newPlataformasId
-                            )
-                            isEditing = false
-                            juegoSelecionado = null
+                            // Verificar que los campos no estén vacíos o nulos
+                            if (newJuegosNombre.isNotEmpty() && newJuegosPrecio.isNotEmpty() && newTipoId != 0 && newPlataformasId != 0) {
+                                // Llamada al ViewModel para actualizar el juego
+                                juegosViewModel.updateJuego(
+                                    juegoId = juego.id,
+                                    nombre = newJuegosNombre,
+                                    precio = newJuegosPrecio,
+                                    tipoId = newTipoId,
+                                    plataformaId = newPlataformasId
+                                )
+                                // Salir del modo de edición
+                                isEditing = false
+                                juegoSelecionado = null
+                            } else {
+                                // Aquí puedes mostrar un mensaje de error si algo está vacío
+                                Log.e("Actualizar Juego", "Uno o más campos están vacíos o inválidos.")
+                            }
                         }
                     }
                 }) {
                     Text("Guardar Cambios")
                 }
+
+
+            }
         }
-        }
+
     }
-}
+        }
