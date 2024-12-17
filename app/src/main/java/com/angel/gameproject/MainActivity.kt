@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.angel.gameproject.data.AppDatabase
 import com.angel.gameproject.ui.theme.GameProjectTheme
-import com.angel.gameproject.view.view
+import com.angel.gameproject.view.MainView
 import com.angel.gameproject.viewModel.JuegosViewModel
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
         val juegosViewModel = JuegosViewModel(juegosDao, tipoJuegosDao, plataformasDao)
         setContent {
-            view(juegosViewModel)
+            MainView(juegosViewModel = juegosViewModel)
 
                 }
             }
