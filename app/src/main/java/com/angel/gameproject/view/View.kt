@@ -33,8 +33,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
@@ -230,9 +234,9 @@ fun view(juegosViewModel:JuegosViewModel) {
                 Button(onClick = {
                     juegoSelecionado?.let { juego ->
                         scope.launch {
-                            // Llamada al ViewModel para eliminar el juego
+
                             juegosViewModel.deleteJuego(juego.id)
-                            // Resetear la interfaz
+
                             juegoSelecionado = null
                             isEditing = false
                         }
@@ -246,7 +250,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                         juegoSelecionado?.let { juego ->
                             // Verificar que los campos no estén vacíos o nulos
                             if (newJuegosNombre.isNotEmpty() && newJuegosPrecio.isNotEmpty() && newTipoId != 0 && newPlataformasId != 0) {
-                                // Llamada al ViewModel para actualizar el juego
+
                                 juegosViewModel.updateJuego(
                                     juegoId = juego.id,
                                     nombre = newJuegosNombre,
@@ -279,6 +283,12 @@ fun BottomNavigationBar() {
         backgroundColor = Color(0xFF2196F3),
         contentColor = Color.White
     ) {
+        BottomNavigationItem(
+            icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
+            label = { Text("Inicio") },
+            selected = false,
+            onClick = {
 
+            }
     }
 }

@@ -74,7 +74,7 @@ class JuegosViewModel(
     fun addJuego(juego: Juegos) {
         viewModelScope.launch(Dispatchers.IO) {
             juegosDao.insert(juego)
-            // Actualiza la lista de juegos después de insertar
+
             _juegos.value = juegosDao.getAllJuegos()
             loadJuegos()
         }
@@ -86,7 +86,7 @@ class JuegosViewModel(
         }
     }
     fun updateJuego(juegoId: Int, nombre: String, precio: String, tipoId: Int, plataformaId: Int) {
-        // Verificar si alguno de los campos es inválido
+
         if (nombre.isEmpty() || precio.isEmpty() || tipoId == 0 || plataformaId == 0) {
             Log.e("Actualizar Juego", "Los campos no pueden estar vacíos.")
             return  // Aquí podemos salir de la función si hay un campo inválido
@@ -94,19 +94,19 @@ class JuegosViewModel(
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Crear un nuevo objeto Juegos con los datos actualizados
+
                 val juegoActualizado = Juegos(
-                    id = juegoId,  // Mantenemos el id del juego original
+                    id = juegoId,
                     nombreJuegos = nombre,
                     Precio = precio,
                     idTipoJuegos = tipoId,
                     idPlataformas = plataformaId
                 )
 
-                // Actualiza el juego en la base de datos
+
                 juegosDao.update(juegoActualizado)
 
-                // Después de actualizar, recargamos la lista de juegos
+
                 loadJuegos()
             } catch (e: Exception) {
                 Log.e("Actualizar Juego", "Error al actualizar el juego")
