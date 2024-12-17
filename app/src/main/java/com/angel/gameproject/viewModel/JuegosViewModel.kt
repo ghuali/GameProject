@@ -74,6 +74,13 @@ class JuegosViewModel(
             juegosDao.insert(juego)
             // Actualiza la lista de juegos después de insertar
             _juegos.value = juegosDao.getAllJuegos()
+            loadJuegos()
         }
     }
+    fun deleteJuego(juegoId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            juegosDao.deleteById(juegoId)
+            loadJuegos()
+        }
+}
 }
