@@ -53,6 +53,8 @@ fun view(juegosViewModel:JuegosViewModel) {
     var selectedPlataformas by remember { mutableStateOf("") }
     var newPlataformasId by remember { mutableStateOf(0) }
 
+    var isEditing by remember { mutableStateOf(false) }
+
     var expanded by remember { mutableStateOf(false) }
     var expanded2 by remember { mutableStateOf(false) }
 
@@ -185,6 +187,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                     .fillMaxWidth()
                     .clickable {
                         juegoSelecionado = juegos
+                        isEditing = true
                     }
                 ){}
                 
