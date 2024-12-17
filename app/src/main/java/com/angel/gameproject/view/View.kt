@@ -31,16 +31,9 @@ import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-
-import androidx.compose.material.BottomNavigation
-
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
+
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
 
@@ -48,9 +41,14 @@ import com.angel.gameproject.viewModel.JuegoUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@Composable
+fun Screens(juegosViewModel: JuegosViewModel) {
+
+    var currentView by remember { mutableStateOf("home") }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun view(juegosViewModel:JuegosViewModel) {
+fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
     val tipoJuegos by juegosViewModel.tipoJuegos.collectAsState()
     val plataformas by juegosViewModel.plataformas.collectAsState()
     val juegos by juegosViewModel.juegos.collectAsState()
