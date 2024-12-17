@@ -39,20 +39,9 @@ class JuegosViewModel(
     private val _plataformas = MutableStateFlow<List<Plataformas>>(emptyList())
     val plataformas: StateFlow<List<Plataformas>> = _plataformas
 
-    val juegosUI: StateFlow<List<JuegoUI>> = combine(
-        _juegos, _tiposJuegos, _plataformas
-    ) { juegos, tipos, plataformas ->
-        juegos.map { juego ->
-            JuegoUI(
-                id = juego.id,
-                nombre = juego.nombreJuegos,
-                precio = juego.Precio,
-                tipo = tipos.find { it.id == juego.idTipoJuegos }?.nombre ?: "Desconocido",
-                plataforma = plataformas.find { it.idPlataformas == juego.idPlataformas }?.tituloPlataformas
-                    ?: "Desconocido"
-            )
-        }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    private val _juegosUI = MutableStateFlow<List<JuegoUI>>(emptyList())
+    val juegosUI: StateFlow<List<JuegoUI>> get() = _juegosUI
+
 
     init {
         viewModelScope.launch {
@@ -61,8 +50,25 @@ class JuegosViewModel(
 
             // Carga las plataformas desde la base de datos
             _plataformas.value = plataformasDao.getAllPlataformas()
+
+            loadJuegos()
         }
     }
+
+        private fun loadJuegos() {
+            viewModelScope.launch(Dispatchers.IO) {
+                val juegos = juegosDao.getAllJuegos()
+                _juegosUI.value = juegos.map { juego ->
+                    JuegoUI(
+                        id = juego.id,
+                        nombre = juego.nombreJuegos,
+                        precio = juego.Precio,
+                        tipo = juegosDao.getTipoById(juego.idTipoJuegos)?.nombre ?: "Desconocido",
+                        plataforma = juegosDao.getPlataformaById(juego.idPlataformas)?.tituloPlataformas ?: "Desconocido"
+                    )
+                }
+            }
+        }
     fun addJuego(juego: Juegos) {
         viewModelScope.launch(Dispatchers.IO) {
             juegosDao.insert(juego)

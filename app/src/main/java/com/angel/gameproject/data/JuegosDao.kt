@@ -14,4 +14,11 @@ import kotlinx.coroutines.flow.Flow
     @Update
     suspend fun update(juegos: Juegos)
     @Delete
-    suspend fun delete(juegos: Juegos) }
+    suspend fun delete(juegos: Juegos)
+
+    @Query("SELECT * FROM tipojuegos WHERE id = :id")
+    suspend fun getTipoById(id: Int): TipoJuegos?
+
+    @Query("SELECT * FROM plataformas WHERE idPlataformas = :id")
+    suspend fun getPlataformaById(id: Int): Plataformas?
+}
