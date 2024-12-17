@@ -21,4 +21,7 @@ import kotlinx.coroutines.flow.Flow
 
     @Query("SELECT * FROM plataformas WHERE idPlataformas = :id")
     suspend fun getPlataformaById(id: Int): Plataformas?
+
+    @Query("DELETE FROM Juegos WHERE id = :juegoId")
+    suspend fun deleteById(juegoId: Int)
 }
