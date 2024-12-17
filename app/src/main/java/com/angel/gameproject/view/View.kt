@@ -1,6 +1,7 @@
 package com.angel.gameproject.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -174,5 +175,17 @@ fun view(juegosViewModel:JuegosViewModel) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        Text("Lista de Juegos", fontSize = 22.sp)
+            juegos.forEach{ juegos ->
+                Row (
+                    modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+
+                    }
+                ){}
+                
+            }
     }
 }
