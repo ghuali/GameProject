@@ -195,7 +195,10 @@ fun view(juegosViewModel:JuegosViewModel) {
                         selectedPlataformas = plataformas.find { it.idPlataformas == juegos.idPlataformas }?.tituloPlataformas?: ""
                     }
                     .padding(vertical = 4.dp)
-                ){}
+                ){
+                    Text(text =
+                    "Juego: ${juegos.nombreJuegos}, Precio: ${juegos.Precio}, Tipo: ${tipoJuegos.find { it.id == juegos.idTipoJuegos }?.nombre ?: "Desconocido"},Plataforma: ${plataformas.find { it.idPlataformas == juegos.idPlataformas }?.tituloPlataformas?: "Desconocido"}")
+                }
                 
             }
     }
