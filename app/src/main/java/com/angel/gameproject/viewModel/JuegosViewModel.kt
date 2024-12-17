@@ -82,5 +82,11 @@ class JuegosViewModel(
             juegosDao.deleteById(juegoId)
             loadJuegos()
         }
-}
+    }
+    fun updateJuego(juegoId: Int, nombre: String, precio: String, tipoId: Int, plataformaId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            juegosDao.updateJuego(juegoId, nombre, precio, tipoId, plataformaId)
+            loadJuegos() // Recargar la lista de juegos después de editar
+        }
+    }
 }
