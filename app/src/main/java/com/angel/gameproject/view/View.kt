@@ -32,6 +32,7 @@ import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
@@ -274,5 +275,10 @@ fun view(juegosViewModel:JuegosViewModel) {
 
 @Composable
 fun BottomNavigationBar() {
+    BottomNavigation(
+        backgroundColor = Color(0xFF2196F3),
+        contentColor = Color.White
+    ) {
 
+    }
 }
