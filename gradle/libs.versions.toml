@@ -15,6 +15,8 @@ roomRuntime = "2.6.1"
 ui = "1.7.6"
 uiToolingPreview = "1.7.6"
 media3CommonKtx = "1.5.0"
+osmAndroidCompose = "0.0.3"
+osmdroidAndroid = "(6.1.6)"
 
 [libraries]
 androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
@@ -41,6 +43,8 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
+osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
+osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -26,17 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import com.angel.gameproject.viewModel.JuegosViewModel
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
-
 import com.angel.gameproject.viewModel.JuegoUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -99,7 +96,6 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
         ) {
             Text("Ir al Mapa")
         }
-    }
 
         Text("Añadir juego Nuevo", fontSize = 10.sp)
         OutlinedTextField(
@@ -286,6 +282,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
             }
         }
     }
+}
 
 
 
