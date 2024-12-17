@@ -46,6 +46,8 @@ fun Screens(juegosViewModel: JuegosViewModel) {
 
     var currentView by remember { mutableStateOf("home") }
 
+    when (currentView) {}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun view(juegosViewModel:JuegosViewModel,onNavigatetoMap: () -> Unit) {
