@@ -33,6 +33,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
 import com.angel.gameproject.data.Plataformas
@@ -63,6 +64,10 @@ fun view(juegosViewModel:JuegosViewModel) {
 
     var juegoSelecionado by remember { mutableStateOf<JuegoUI?>(null) }
 
+
+    Scaffold(
+        bottomBar = { BottomNavigationBar() }
+    ) {}
 
     Column(
         modifier = Modifier
