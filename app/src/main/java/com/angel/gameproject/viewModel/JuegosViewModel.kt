@@ -109,7 +109,7 @@ class JuegosViewModel(
                 // Después de actualizar, recargamos la lista de juegos
                 loadJuegos()
             } catch (e: Exception) {
-                Log.e("Actualizar Juego", "Error al actualizar el juego: ${e.message}")
+                Log.e("Actualizar Juego", "Error al actualizar el juego")
             }
         }
     }
