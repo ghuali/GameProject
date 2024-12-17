@@ -223,7 +223,8 @@ fun view(juegosViewModel:JuegosViewModel) {
                             isEditing = false
                         }
                     }
-                }
+                }, colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))) {
+                    Text("Borrar")
             }
         }
     }
