@@ -56,6 +56,8 @@ fun view(juegosViewModel:JuegosViewModel) {
     var expanded by remember { mutableStateOf(false) }
     var expanded2 by remember { mutableStateOf(false) }
 
+    var juegoSelecionado by remember { mutableStateOf<Juegos?>(null) }
+
 
     Column(
         modifier = Modifier
@@ -182,7 +184,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                     modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-
+                        juegoSelecionado = juegos
                     }
                 ){}
                 
