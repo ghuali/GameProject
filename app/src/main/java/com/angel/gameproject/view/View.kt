@@ -35,6 +35,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.rememberCoroutineScope
 import com.angel.gameproject.data.Juegos
+import com.angel.gameproject.data.Plataformas
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -191,6 +192,7 @@ fun view(juegosViewModel:JuegosViewModel) {
                         newJuegosNombre = juegos.nombreJuegos
                         newJuegosPrecio = juegos.Precio
                         selectedTipoJuegos = tipoJuegos.find { it.id == juegos.idTipoJuegos }?.nombre ?: ""
+                        selectedPlataformas = plataformas.find { it.idPlataformas == juegos.idPlataformas }?.tituloPlataformas?: ""
                     }
                     .padding(vertical = 4.dp)
                 ){}
