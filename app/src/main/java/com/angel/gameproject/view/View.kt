@@ -83,7 +83,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xFF2196F3))
+            .background(color = Color(0xFFFFFFFF))
             .padding(16.dp)
             .padding(vertical = 50.dp),
         verticalArrangement = Arrangement.Top,
@@ -92,7 +92,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
         Button(
             onClick = onNavigateToMap,
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(Color(0xFF4CAF50))
+            colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))
         ) {
             Text("Ir al Mapa")
         }
@@ -199,7 +199,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
                     }
                 },
                 modifier = Modifier.padding(8.dp),
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
+                colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))
             ) {
                 Text("Añadir")
             }
@@ -245,7 +245,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
                             isEditing = false
                         }
                     }
-                }, colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))) {
+                }, colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))) {
                     Text("Borrar")
                 }
 
@@ -274,7 +274,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
                             }
                         }
                     }
-                }) {
+                },colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))) {
                     Text("Guardar Cambios")
                 }
 
