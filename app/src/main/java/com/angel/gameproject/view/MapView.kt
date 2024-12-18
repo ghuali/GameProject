@@ -2,6 +2,7 @@ package com.angel.gameproject.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -21,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.angel.gameproject.viewModel.JuegosViewModel
 import com.utsman.osmandcompose.DefaultMapProperties
 import com.utsman.osmandcompose.ZoomButtonVisibility
@@ -32,15 +35,29 @@ import org.osmdroid.util.MapTileIndex
 
 @Composable
 fun MapView(onNavigateBack: () -> Unit) {
-
-        // Botón para volver a la vista principal
-    Button(
-        onClick = onNavigateBack,
-        colors = ButtonDefaults.buttonColors(Color(0xFFFF5722))
+    // Contenedor principal
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFE3F2FD))
     ) {
-            Text("Volver a Inicio")
+        // Mapa interactivo
+        MyMapView(
+            modifier = Modifier.fillMaxSize()
+        )
+
+        // Botón flotante para volver
+        FloatingActionButton(
+            onClick = onNavigateBack,
+            containerColor = Color(0xFFF700FF),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        ) {
+            Text("Volver", color = Color.White)
         }
     }
+}
 
 
 val GoogleSat: OnlineTileSourceBase = object : XYTileSource(
@@ -58,13 +75,13 @@ val GoogleSat: OnlineTileSourceBase = object : XYTileSource(
 }
 
 @Composable
-fun MyMapView(modifier: Modifier = Modifier, viewModel: JuegosViewModel) {
+fun MyMapView(modifier: Modifier = Modifier) {
 
-    // define camera state
     val cameraState = rememberCameraState {
         geoPoint = GeoPoint(28.957375205489004, -13.554245657440829)
         zoom = 17.0
     }
+
 
     var mapProperties by remember {
         mutableStateOf(DefaultMapProperties)
@@ -72,10 +89,11 @@ fun MyMapView(modifier: Modifier = Modifier, viewModel: JuegosViewModel) {
 
     SideEffect {
         mapProperties = mapProperties
-            //.copy(isTilesScaledToDpi = true)
-            //.copy(tileSources = TileSourceFactory.MAPNIK)
-            .copy(tileSources = GoogleSat)
-            .copy(isEnableRotationGesture = true)
-            .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT)
+            .copy(tileSources = GoogleSat) // Fuente de los tiles
+            .copy(isEnableRotationGesture = true) // Habilitar rotación
+            .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT) // Botones de zoom
     }
+
+
+
 }
