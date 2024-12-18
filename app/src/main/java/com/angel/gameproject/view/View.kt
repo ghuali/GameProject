@@ -277,12 +277,19 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
                 },colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))) {
                     Text("Guardar Cambios")
                 }
+                Button(onClick = {
 
+                    isEditing = false
+                    juegoSelecionado = null
+                },colors = ButtonDefaults.buttonColors(Color(0xFFF700FF))) {
+                    Text("Cancelar")
+                }
+            }
 
             }
         }
     }
-}
+
 
 
 
