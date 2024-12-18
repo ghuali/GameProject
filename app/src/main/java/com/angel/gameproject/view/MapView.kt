@@ -1,5 +1,7 @@
 package com.angel.gameproject.view
 
+import android.graphics.drawable.Drawable
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,10 +22,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Overlay
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import com.angel.gameproject.R
 import com.angel.gameproject.viewModel.JuegosViewModel
 import com.utsman.osmandcompose.DefaultMapProperties
@@ -35,6 +38,8 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.util.MapTileIndex
+import com.utsman.osmandcompose.Marker
+import com.utsman.osmandcompose.rememberMarkerState
 
 @Composable
 fun MapView(onNavigateBack: () -> Unit) {
@@ -84,7 +89,7 @@ fun MyMapView(modifier: Modifier = Modifier) {
 
 
     val cameraState = rememberCameraState {
-        geoPoint = GeoPoint(28.992986562609960,  -13.495383991854991)
+        geoPoint = GeoPoint(28.958915342120196, -13.555492068030503)
         zoom = 15.0 // optional, default is 5.0
     }
 
@@ -107,7 +112,20 @@ fun MyMapView(modifier: Modifier = Modifier) {
         cameraState = cameraState,
         properties = mapProperties // add properties
     ){
-        val marcador by remember { mutableStateOf(R.drawable.icono) }
+        // Recurso del icono
+
+        // Coordenadas donde se ubicará el marcador
+
+        val markerState = rememberMarkerState(
+            geoPoint = GeoPoint(28.958915342120196, -13.555492068030503)
+        )
+        val icono by remember { mutableStateOf(R.drawable.icono) }
+
+        // Agregar el marcador al mapa
+        Marker(
+            state = markerState,
+            icon = ContextCompat.getDrawable(LocalContext.current, icono), // Icono personalizado
+        )
     }
 
 
