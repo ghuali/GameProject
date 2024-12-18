@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.angel.gameproject.viewModel.JuegosViewModel
 import com.utsman.osmandcompose.DefaultMapProperties
+import com.utsman.osmandcompose.OpenStreetMap
 import com.utsman.osmandcompose.ZoomButtonVisibility
 import com.utsman.osmandcompose.rememberCameraState
 import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase
@@ -93,7 +94,11 @@ fun MyMapView(modifier: Modifier = Modifier) {
             .copy(isEnableRotationGesture = true) // Habilitar rotación
             .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT) // Botones de zoom
     }
-
+    OpenStreetMap(
+        modifier = Modifier.fillMaxSize(),
+        cameraState = cameraState,
+        properties = mapProperties // add properties
+    ) {}
 
 
 }
