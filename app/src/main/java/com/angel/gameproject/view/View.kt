@@ -97,7 +97,7 @@ fun HomeView(juegosViewModel: JuegosViewModel, onNavigateToMap: () -> Unit) {
             Text("Ir al Mapa")
         }
 
-        Text("Añadir juego Nuevo", fontSize = 10.sp)
+        Text("Añadir juego Nuevo", fontSize = 20.sp)
         OutlinedTextField(
             value = newJuegosNombre,
             onValueChange = { newJuegosNombre = it },
