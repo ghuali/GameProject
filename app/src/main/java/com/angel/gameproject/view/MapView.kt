@@ -24,12 +24,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.angel.gameproject.R
 import com.angel.gameproject.viewModel.JuegosViewModel
 import com.utsman.osmandcompose.DefaultMapProperties
 import com.utsman.osmandcompose.OpenStreetMap
 import com.utsman.osmandcompose.ZoomButtonVisibility
 import com.utsman.osmandcompose.rememberCameraState
 import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.util.MapTileIndex
@@ -78,27 +80,35 @@ val GoogleSat: OnlineTileSourceBase = object : XYTileSource(
 @Composable
 fun MyMapView(modifier: Modifier = Modifier) {
 
+    TileSourceFactory.addTileSource(GoogleSat)
+
+
     val cameraState = rememberCameraState {
-        geoPoint = GeoPoint(28.957375205489004, -13.554245657440829)
-        zoom = 17.0
+        geoPoint = GeoPoint(28.992986562609960,  -13.495383991854991)
+        zoom = 15.0 // optional, default is 5.0
     }
 
-
+    // define properties with remember with default value
     var mapProperties by remember {
         mutableStateOf(DefaultMapProperties)
     }
 
+    // setup mapProperties in side effect
     SideEffect {
         mapProperties = mapProperties
-            .copy(tileSources = GoogleSat) // Fuente de los tiles
-            .copy(isEnableRotationGesture = true) // Habilitar rotación
-            .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT) // Botones de zoom
+            //.copy(isTilesScaledToDpi = true)
+            .copy(tileSources = TileSourceFactory.MAPNIK)
+            .copy(isEnableRotationGesture = true)
+            .copy(zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT)
     }
+
     OpenStreetMap(
         modifier = Modifier.fillMaxSize(),
         cameraState = cameraState,
         properties = mapProperties // add properties
-    ) {}
+    ){
+        val marcador by remember { mutableStateOf(R.drawable.icono) }
+    }
 
 
 }
